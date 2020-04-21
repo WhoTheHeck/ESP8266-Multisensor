@@ -1,0 +1,11 @@
+# BOM
+
+NodeMCU v2
+SHT31
+CCS811
+BME280
+AM312
+WS2812B 1-Bit Module - RGB LED
+Case top (3D printed)
+Case bottom (3D printed)
+LED Cap (3D printed)
