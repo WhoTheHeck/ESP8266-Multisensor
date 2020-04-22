@@ -1,8 +1,8 @@
 esphome:
-  name: testnode1
+  name: room_sensor
   platform: ESP8266
   board: nodemcuv2
-  arduino_version: 2.6.2
+  # arduino_version: 2.6.2
 
 wifi:
   ssid: !secret ssidname
@@ -14,11 +14,16 @@ wifi:
     dns1: xxxxxxxxxxxx
     dns2: xxxxxxxxxxxx
 
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "room-Senor Fallback Hotspot"
+    password: "SdI0kd54Zpw0"
+
 # Enable logging
 logger:
-  #level: very_verbose
-  #logs:
-    #i2c: debug
+					  
+  logs:
+    i2c: debug
 
 # Enable Home Assistant API
 api:
@@ -35,27 +40,33 @@ globals:
     initial_value: '0'
 
 sensor:
+#  - platform: adc
+#    pin: A0
+#    name: "room Input"
+#    update_interval: 60s
   - platform: sht3xd
     # address: 0x44
     temperature:
-      name: "AZ Temp."
+      name: "room Temp"
       filters:
-        - offset: -1  # was -4
+        - offset: -2.7  # was -1
       id: temp
     humidity:
-      name: "AZ Luftfeuchtigkeit"
+      name: "room humidity"
+      #filters:
+        #- offset: +0.8
       id: humi
     update_interval: 60s
   - platform: ccs811
     eco2:
-      name: "AZ eCO2 Wert"
+      name: "room eCO2"
       id: eco2
       filters:
       - lambda: |-
           if (x >= 50000) return 1;
           else return x;
     tvoc:
-      name: "AZ TVOC"
+      name: "room TVOC"
       id: tvoc
       filters:  # filters high values that are reported after startup
       - lambda: |-
@@ -63,14 +74,14 @@ sensor:
           else return x;
     temperature: temp
     humidity: humi
-    baseline: 0xB55C
+    baseline: 0x7B7B
     # address: 0x5A
     update_interval: 60s
   - platform: wifi_signal
-    name: "AZ WiFi Signal"
+    name: "room Wifi"
     update_interval: 60s
   - platform: bh1750
-    name: "AZ Helligkeit"
+    name: "room Helligkeit"
     id: brightness
     unit_of_measurement: lx
     # address: 0x23
@@ -78,16 +89,32 @@ sensor:
 
 binary_sensor:
   - platform: gpio
-    pin: D0
-    name: "AZ Fenster"
+    pin: 12
+    name: "room window"
     id: window
     device_class: window
     filters:
       - delayed_off: 500ms
       - delayed_on: 500ms
+#  - platform: gpio
+#    pin: 13
+#    name: "room window 2"
+#    id: window2
+#    device_class: window
+#    filters:
+#      - delayed_off: 500ms
+#      - delayed_on: 500ms
+#  - platform: gpio
+#    pin: 10
+#    name: "room window 3"
+#    id: window2
+#    device_class: window
+#    filters:
+#      - delayed_off: 500ms
+#      - delayed_on: 500ms
   - platform: gpio
-    pin: D5
-    name: "AZ Bewegung"
+    pin: 14
+    name: "room Bewegung"
     id: motion
     device_class: motion
     filters:
@@ -150,17 +177,19 @@ binary_sensor:
           then:
             - script.execute: ledred
   - platform: status
-    name: "AZ ESP Status"
+    name: "room ESP Status"
 
 switch:
   - platform: restart
-    name: "AZ ESP Restart"
+    name: "room ESP Restart"
 
-text_sensor:  
+text_sensor:
   # credit belongs to Bouke_Regnerus:
   # https://community.home-assistant.io/t/example-indoor-air-quality-text-sensor-using-ccs811-sensor/125854
+  - platform: version
+    name: "room ESPHome Version"
   - platform: template
-    name: "AZ IAQ"
+    name: "room IAQ"
     id: airqual
     icon: "mdi:air-filter"
     lambda: |-
@@ -248,11 +277,11 @@ text_sensor:
 
 light:
   - platform: fastled_clockless
-    chipset: WS2812
-    pin: D7
+    chipset: WS2812B
+    pin: 3
     num_leds: 1
-    rgb_order: GRB
-    name: "Status-LED"
+    rgb_order: RGB
+    name: "room Status LED"
     id: statled
     effects:
       - random:
@@ -267,7 +296,29 @@ light:
           name: "Flicker"
           alpha: 95%
           intensity: 5%
+# unsued:
+  - platform: monochromatic
+    name: "room Onboard LED"
+    output: onboard_led
+    id: led1
+  - platform: monochromatic
+    name: "room OnESP LED"
+    output: onesp_led
+    id: led2
 
+# unused:
+output:
+  - platform: esp8266_pwm
+    id: onboard_led
+    pin:
+      number: 16  # = D0
+      inverted: true
+  - platform: esp8266_pwm
+    id: onesp_led
+    pin:
+      number: 2  # = D4
+      inverted: true
+   
 script:
   - id: ledgreen
     then:
