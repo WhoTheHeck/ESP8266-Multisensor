@@ -11,7 +11,7 @@
 1x Case bottom (3D printed)
 1x JST assembly guide (3d printed)
 3x 3 pin JST
-2x fresnel lenses (type 13120) (1 as LED diffuor, 1 as lightsensor cover)
+2x fresnel lenses (type 13120) (1 as LED diffusor, 1 as lightsensor cover)
 copper wire, solder tools
 
 optional:
