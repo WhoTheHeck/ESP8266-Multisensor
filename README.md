@@ -26,9 +26,9 @@ Dependent on the position of a component hand soldering starts from one or the o
 A jumper can be used for changing one of the external sensors from digital to analog-in.
 
 For manual soldering top traces are:  
-<img src="images/routingplan_top_v1.PNG" width=500>
+<img src="images/routingplan_top_v1.PNG" width=500>  
 bottom traces are:  
-<img src="images/routingplan_bottom_v1.PNG" width=500>
+<img src="images/routingplan_bottom_v1.PNG" width=500>  
 Use isolating tape / kapton tape on PCB to avoid shorts between both layers.
 
 
@@ -36,19 +36,19 @@ Use isolating tape / kapton tape on PCB to avoid shorts between both layers.
 
 - 3D print the 3 parts: case front, case back and JST assembly guide
 - get the PCBs (manufactured or DIYed)
-- solder copper wire through JST-connector solder points
+- solder copper wire through JST-connector solder points  
 <img src="images/IMG_1103.JPG" width=500>  
-- place JST-connectors in assembly guide, place the PCB in there too
+- place JST-connectors in assembly guide, place the PCB in there too  
 <img src="images/IMG_1104.JPG" width=500>  
 - solder JSTs to copper wire, cut off excess
 - solder 3 pin header contacts for analog/digital select, place jumper accordingly; alternatively solder bridge
 <img src="images/IMG_1106.JPG" width=500>  
 - solder sensor-modules, watch out that sensors face upright
-- dependent on your AM312 pin headers can have the plastic piece so that its height will be increased. in that case remove the plastic of the pin header
+- dependent on your AM312 pin headers can have the plastic piece so that its height will be increased. in that case remove the plastic of the pin header  
 <img src="images/IMG_1100.JPG" width=500>  
-- solder sensor-modules and NodeMCU to PCB
+- solder sensor-modules and NodeMCU to PCB  
 <img src="images/IMG_1107.JPG" width=500>  
-- place LED lens and light-sensor lens in case
+- place LED lens and light-sensor lens in case  
 <img src="images/IMG_1110.JPG" width=500>  
 - remove lens from AM312
 - put PCB in place
