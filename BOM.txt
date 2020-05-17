@@ -1,11 +1,23 @@
 # BOM
 
-NodeMCU v2
-SHT31
-CCS811
-BME280
-AM312
-WS2812B 1-Bit Module - RGB LED
-Case top (3D printed)
-Case bottom (3D printed)
-LED Cap (3D printed)
+1x NodeMCU v2
+1x SHT31
+1x CCS811
+1x BME280
+1x AM312
+1x WS2812B 1-Bit Module - RGB LED
+1x PCB
+1x Case top (3D printed)
+1x Case bottom (3D printed)
+1x JST assembly guide (3d printed)
+3x 3 pin JST
+2x fresnel lenses (type 13120) (1 as LED diffuor, 1 as lightsensor cover)
+copper wire, solder tools
+
+optional:
+3x pinheader-contacts (alternatively solderbridge on PCB)
+
+under evaluation: fresnel lenses.
+type 023115 could potentially be a replacement for AM312 Lens -> should improve range
+type 13120F2 should have same dimensions as 13120 with slightly improved range.
+In that case the lenses work: use the original AM312 lens for the LED diffusor, get only one more 12130 lens for the light sensor, use the 023115 lens for the AM312.
