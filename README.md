@@ -1,5 +1,3 @@
-## This project and the repo are heavily WIP. I plan to publish everything as it's in the state to be published.
-
 # ESPHome based multisensor
 
 <img src="images/Multisensor_1v0.bmp" width=500>
